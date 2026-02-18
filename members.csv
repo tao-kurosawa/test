@@ -1,0 +1,64 @@
+member_id,chapter_id,chapter_name,name_ja,name_en,company,company_url,position,role_in_eo,role_detail,data_source,notes
+1,1,EO Hokkaido,岡田吉伸,Yoshinobu Okada,株式会社創伸建設,,代表取締役,会長,第4期会長,公式サイト,
+2,1,EO Hokkaido,北川健太郎,Kentaro Kitagawa,株式会社E-Grant,,代表取締役,副会長・ファイナンス理事,,公式サイト,
+3,1,EO Hokkaido,石水創,Hajime Ishimizu,石屋製菓株式会社,,代表取締役,ガバナンス理事,,公式サイト,白い恋人で有名
+4,1,EO Hokkaido,菊地大輝,Daiki Kikuchi,株式会社菊地,,代表取締役,メンバーシップ理事,,公式サイト,
+5,1,EO Hokkaido,浅井亮介,Ryosuke Asai,株式会社インサイト,,代表取締役,メンバーエンゲージメント理事,,公式サイト,
+6,1,EO Hokkaido,前田章博,Akihiro Maeda,ビットスター株式会社,,代表取締役,ラーニング理事,,公式サイト,
+7,1,EO Hokkaido,武石幸之助,Konosuke Takeishi,株式会社ワンオブゼム,,代表取締役,ラーニング理事,,公式サイト,
+8,1,EO Hokkaido,青山裕亮,Yusuke Aoyama,東北土建株式会社,,代表取締役,フォーラム理事,,公式サイト,
+9,1,EO Hokkaido,安西勇輔,Yusuke Anzai,株式会社Lim,,代表取締役,マーケティング＆コミュニケーション理事,,公式サイト,
+10,1,EO Hokkaido,駒谷僚,Ryo Komatani,株式会社鈴木商会,,代表取締役,MyEO理事,,公式サイト,
+11,1,EO Hokkaido,入澤拓也,Takuya Irisawa,エコモット株式会社,,代表取締役,起業家支援統括理事,,公式サイト,
+12,1,EO Hokkaido,杉目茂雄,Shigeo Sugime,札樽観光株式会社,,代表取締役,インキュベーション理事,,公式サイト,
+13,1,EO Hokkaido,及川厚博,Atsuhiro Oikawa,株式会社M&Aクラウド,,代表取締役,EGG理事,,公式サイト,
+14,1,EO Hokkaido,西沢亮一,Ryoichi Nishizawa,株式会社ネオキャリア,,代表取締役,初代会長,歴代会長,プレスリリース,北海道中標津町出身
+15,1,EO Hokkaido,富山浩樹,Hiroki Tomiyama,サツドラホールディングス株式会社,,代表取締役社長,第2期会長,歴代会長,プレスリリース,
+16,2,EO North Japan,齊藤良太,Ryota Saito,,,,,EO Japan Region Finance Director,,EO Japan Region,
+17,3,EO Ibaraki,堀義人,Yoshito Hori,グロービス経営大学院,,学長・代表,初代会長,,プレスリリース,1995年にEO Japanをアジア初で設立
+18,3,EO Ibaraki,金子達,Tatsu Kaneko,金子金物株式会社,,代表取締役,第3期会長,,公式サイト,
+19,4,EO Tokyo Central,山木智史,Tomofumi Yamaki,株式会社Re-grit Partners,,代表取締役社長 兼 CEO,第30期会長,,公式サイト,
+20,4,EO Tokyo Central,天沼聰,Satoshi Amanuma,株式会社エアークローゼット,,代表取締役,第29期会長,歴代会長,公式サイト,
+21,4,EO Tokyo Central,長岡路恵,Michie Nagaoka,,,,,Marketing Communications Expert,,EO Japan Region,
+22,4,EO Tokyo Central,前田啓佑,Keisuke Maeda,,,,,Forum Expert,,EO Japan Region,
+23,4,EO Tokyo Central,近藤佑太朗,Yutaro Kondo,,,,,GSEA Expert,,EO Japan Region,
+24,5,EO Tokyo West,鈴木賢志,Kenji Suzuki,株式会社トータルフロー,,代表取締役,第9期会長,,公式サイト,
+25,5,EO Tokyo West,武内一矢,Kazuya Takeuchi,株式会社NAVICUS,https://navicus.info,代表取締役,会員,,公式サイト,
+26,5,EO Tokyo West,金成光,Seikou Kin,株式会社Eight,https://eight-system.com,代表取締役,会員,,公式サイト,
+27,5,EO Tokyo West,岸本雄太,Yuta Kishimoto,株式会社ネクストリンク,https://next-link.jp,代表取締役,会員,,公式サイト,
+28,5,EO Tokyo West,池田輝男,Teruo Ikeda,常総梱包運輸株式会社（池田ピアノ運送グループ）,https://josokonpo.com,代表取締役,会員,,公式サイト,
+29,5,EO Tokyo West,鷹羽浩介,Kosuke Takaha,アズウェル株式会社,https://as-well.co.jp,代表取締役,会員,,公式サイト,
+30,5,EO Tokyo West,石井欣哉,Kinya Ishii,株式会社アイケイワイ,https://iky.biz,代表取締役,会員,,公式サイト,
+31,5,EO Tokyo West,谷口嘉正,Yoshimasa Taniguchi,株式会社コリン,https://colin.jp,代表取締役,会員,,公式サイト,
+32,5,EO Tokyo West,広川元基,Motoki Hirokawa,株式会社G&N,https://gandn.co.jp,代表取締役,会員,,公式サイト,
+33,5,EO Tokyo West,井上将豪,Masatake Inoue,アシスト・ジャパン株式会社,https://assist-j.com,代表取締役,会員,,公式サイト,
+34,5,EO Tokyo West,中崎祐史,Yuji Nakazaki,TANPAC株式会社,https://kinnikushokudo.jp,代表取締役,会員,,公式サイト,筋肉食堂
+35,5,EO Tokyo West,髙畠弘二,Koji Takahata,SOBイノベーションパートナーズ株式会社,,代表取締役,会員,,公式サイト,
+36,5,EO Tokyo West,曽我香織,Kaori Soga,,,,,Membership Expert,,EO Japan Region,
+37,5,EO Tokyo West,山本正卓,Masataka Yamamoto,,,,,FY20-21 EO North Asia Regional Chair,,EO Japan Region,
+38,9,EO Kanagawa,小泉英一,Eiichi Koizumi,HITOMIOテクノロジーズ,,代表取締役,第2期会長,,公式サイト,2016年EO入会。Tokyo Central→West→Kanagawa立ち上げ
+39,9,EO Kanagawa,佐藤康成,Kose Sato,,,,,EO Japan Region 東日本エリアディレクター,,EO Japan Region,
+40,12,EO Nagoya,河合達明,Tatsuaki Kawai,株式会社ブラス,,代表取締役,初代会長,,プレスリリース,
+41,12,EO Nagoya,小栗徳丸,Tokumaru Oguri,株式会社WCS,,代表取締役,第3期会長,,公式サイト,
+42,12,EO Nagoya,松下健,Ken Matsushita,株式会社オプティマインド,,代表取締役,会員,,プレスリリース,上場起業家
+43,12,EO Nagoya,服部雄太,Yuta Hattori,GOOD AID株式会社,,代表取締役,会員,,プレスリリース,上場起業家
+44,12,EO Nagoya,谷口政人,Masato Taniguchi,株式会社ファブリカコミュニケーションズ,,代表取締役,会員,,プレスリリース,上場起業家
+45,12,EO Nagoya,明田篤,Atsushi Akeda,株式会社トビラシステムズ,,代表取締役,会員,,プレスリリース,上場起業家
+46,13,EO Kyoto,他力野淳,Jun Tarikino,バリューマネジメント株式会社,,代表取締役,FY25-26 Regional Chair,,EO Japan Region,歴史的建造物に特化した事業再生コンサルタント
+47,14,EO Osaka,清水力人,Rikito Shimizu,エースポイントシステムズ株式会社,,代表取締役,メンバーエンゲージメント理事,,公式サイト,
+48,14,EO Osaka,廣渡史郎,Shiro Hirowatari,株式会社風神,,代表取締役,フォーラム理事,,公式サイト,
+49,14,EO Osaka,寺島正浩,Masahiro Terashima,株式会社パンスール,,代表取締役,ラーニング理事,,公式サイト,
+50,14,EO Osaka,中尾智彦,Tomohiko Nakao,中尾食品工業株式会社,,代表取締役,ラーニング理事,,公式サイト,
+51,14,EO Osaka,沼部美由紀,Miyuki Numabe,株式会社クロシェホールディングス,,代表取締役,マーケティング＆コミュニケーション理事,,公式サイト,
+52,14,EO Osaka,犬飼亮,Ryo Inukai,株式会社ラドルフ,,代表取締役,My EO理事,,公式サイト,
+53,14,EO Osaka,上野公嗣,Koji Ueno,BABY JOB株式会社,,代表取締役,アクセラレーター理事,,公式サイト,
+54,14,EO Osaka,李中雄,Joongwoong Lee,株式会社アプロ総研,,代表取締役,GSEA理事,,公式サイト,
+55,14,EO Osaka,大東利也,Toshiya Ohigashi,,,代表取締役,メンターシップ理事,,公式サイト,
+56,14,EO Osaka,木原史貴,Fumitaka Kihara,,,,,EO Japan Region 西日本エリアディレクター,,EO Japan Region,
+57,14,EO Osaka,北島万乗,Banjo Kitajima,,,,,EO Japan Region Member Growth Director,,EO Japan Region,
+58,15,EO Kobe,重見彰則,Akinori Shigemi,,,代表取締役,第4期会長,,公式サイト,EO神戸立ち上げから関与
+59,15,EO Kobe,淺井健寛,Takehiro Asai,株式会社Loop Quest,https://loopquest.net/,代表取締役,会員,,公式サイト,
+60,16,EO Setouchi,吉村公孝,Kimitaka Yoshimura,ベイシス株式会社,,代表取締役社長,初代会長,,公式サイト,
+61,17,EO Kyushu,井手口浩士,Hiroshi Ideguchi,,,代表取締役,第6期会長,,公式サイト,EO FukuokaからEO Kyushuへ改称時の会長
+62,10,EO Beyond Japan,齋藤晴紀,Haruki Saito,,,,,EO Japan Region Accelerator Expert,,EO Japan Region,
+63,7,EO Tokyo Metropolitan,Alan Cheung,Alan Cheung,,,,,FY22-24 EO North Asia Regional Chair,,EO Japan Region,
