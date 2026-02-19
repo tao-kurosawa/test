@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Notion メモ",
+    "slug": "notion-daily-notes",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2F80ED"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dailynotes.notion"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2F80ED"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.dailynotes.notion"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
