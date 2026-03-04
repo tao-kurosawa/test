@@ -128,6 +128,18 @@ def get_today_contacts_count_v3(access_token):
     source_breakdown = {}
     after = None
 
+    # HubSpot ソース名をレポートのフィルタ名にマッピング
+    source_map = {
+        "organic_search": "organic",
+        "paid_search": "paid",
+        "paid_social": "paid-social",
+        "social_media": "social",
+        "direct_traffic": "direct",
+        "referrals": "referrals",
+        "email_marketing": "email",
+        "other_campaigns": "other",
+    }
+
     # ページネーションで全件取得（1回100件まで）
     while True:
         payload = {
@@ -165,28 +177,18 @@ def get_today_contacts_count_v3(access_token):
             sys.exit(1)
 
         results = data.get("results", [])
-        total_contacts += len(results)
 
-        # ソース内訳を集計
+        # ソース内訳を集計（レポートと同じソースのみカウント）
         for contact in results:
             source = (
                 contact.get("properties", {}).get("hs_analytics_source", "")
-                or "unknown"
+                or ""
             ).lower()
-            # HubSpot ソース名をレポートのフィルタ名にマッピング
-            source_map = {
-                "organic_search": "organic",
-                "paid_search": "paid",
-                "paid_social": "paid-social",
-                "social_media": "social",
-                "direct_traffic": "direct",
-                "referrals": "referrals",
-                "email_marketing": "email",
-                "other_campaigns": "other",
-                "offline_sources": "other",
-            }
             mapped = source_map.get(source, source)
-            source_breakdown[mapped] = source_breakdown.get(mapped, 0) + 1
+            # レポートと同じソースフィルタに含まれるもののみカウント
+            if mapped in SOURCES:
+                total_contacts += 1
+                source_breakdown[mapped] = source_breakdown.get(mapped, 0) + 1
 
         # 次のページがあるか確認
         paging = data.get("paging", {})
