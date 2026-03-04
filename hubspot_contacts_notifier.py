@@ -115,7 +115,8 @@ def get_today_contacts_count(access_token):
 def get_today_contacts_count_v3(access_token):
     """
     HubSpot CRM Search API (v3) を使って当日作成されたコンタクト数を取得する。
-    Analytics API が利用できない場合のフォールバック。
+    必要なスコープ: crm.objects.contacts.read のみ（全プランで利用可能）
+    ソース内訳も hs_analytics_source プロパティから取得する。
     """
     jst = timezone(timedelta(hours=9))
     now = datetime.now(jst)
@@ -123,41 +124,79 @@ def get_today_contacts_count_v3(access_token):
     start_ms = int(today_start.timestamp() * 1000)
 
     url = "https://api.hubapi.com/crm/v3/objects/contacts/search"
-    payload = {
-        "filterGroups": [
-            {
-                "filters": [
-                    {
-                        "propertyName": "createdate",
-                        "operator": "GTE",
-                        "value": str(start_ms),
-                    }
-                ]
+    total_contacts = 0
+    source_breakdown = {}
+    after = None
+
+    # ページネーションで全件取得（1回100件まで）
+    while True:
+        payload = {
+            "filterGroups": [
+                {
+                    "filters": [
+                        {
+                            "propertyName": "createdate",
+                            "operator": "GTE",
+                            "value": str(start_ms),
+                        }
+                    ]
+                }
+            ],
+            "properties": ["createdate", "hs_analytics_source"],
+            "limit": 100,
+        }
+        if after:
+            payload["after"] = after
+
+        body = json.dumps(payload).encode("utf-8")
+        req = urllib.request.Request(url, data=body, method="POST")
+        req.add_header("Authorization", f"Bearer {access_token}")
+        req.add_header("Content-Type", "application/json")
+
+        try:
+            with urllib.request.urlopen(req) as response:
+                data = json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            err_body = e.read().decode("utf-8") if e.fp else ""
+            print(f"HubSpot CRM API エラー (HTTP {e.code}): {err_body}")
+            sys.exit(1)
+        except urllib.error.URLError as e:
+            print(f"HubSpot CRM API 接続エラー: {e.reason}")
+            sys.exit(1)
+
+        results = data.get("results", [])
+        total_contacts += len(results)
+
+        # ソース内訳を集計
+        for contact in results:
+            source = (
+                contact.get("properties", {}).get("hs_analytics_source", "")
+                or "unknown"
+            ).lower()
+            # HubSpot ソース名をレポートのフィルタ名にマッピング
+            source_map = {
+                "organic_search": "organic",
+                "paid_search": "paid",
+                "paid_social": "paid-social",
+                "social_media": "social",
+                "direct_traffic": "direct",
+                "referrals": "referrals",
+                "email_marketing": "email",
+                "other_campaigns": "other",
+                "offline_sources": "other",
             }
-        ],
-        "properties": ["createdate", "hs_analytics_source"],
-        "limit": 0,
-    }
+            mapped = source_map.get(source, source)
+            source_breakdown[mapped] = source_breakdown.get(mapped, 0) + 1
 
-    body = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(url, data=body, method="POST")
-    req.add_header("Authorization", f"Bearer {access_token}")
-    req.add_header("Content-Type", "application/json")
+        # 次のページがあるか確認
+        paging = data.get("paging", {})
+        next_page = paging.get("next", {})
+        after = next_page.get("after")
+        if not after:
+            break
 
-    try:
-        with urllib.request.urlopen(req) as response:
-            data = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        err_body = e.read().decode("utf-8") if e.fp else ""
-        print(f"HubSpot CRM API エラー (HTTP {e.code}): {err_body}")
-        sys.exit(1)
-    except urllib.error.URLError as e:
-        print(f"HubSpot CRM API 接続エラー: {e.reason}")
-        sys.exit(1)
-
-    total_contacts = data.get("total", 0)
     today = now.strftime("%Y-%m-%d")
-    return total_contacts, {}, today
+    return total_contacts, source_breakdown, today
 
 
 def send_google_chat_notification(webhook_url, total_contacts, source_breakdown, today):
@@ -201,7 +240,7 @@ def main():
     access_token = config["hubspot_access_token"]
     webhook_url = config["google_chat_webhook_url"]
     notification_threshold = config.get("notification_threshold", 10)
-    api_version = config.get("api_version", "analytics")
+    api_version = config.get("api_version", "crm")
 
     # HubSpot から当日コンタクト数を取得
     if api_version == "crm":

@@ -17,10 +17,10 @@
 1. [HubSpot](https://app.hubspot.com/) にログイン
 2. **設定 → 連携 → プライベートアプリ** に移動
 3. **プライベートアプリを作成** をクリック
-4. 以下のスコープを付与:
-   - `crm.objects.contacts.read`
-   - `analytics.read` (Analytics API を使う場合)
-5. アクセストークンをコピー
+4. **「スコープ」タブ** で以下を検索してチェック:
+   - `crm.objects.contacts.read`（必須 - コンタクト読み取り）
+   - `business-intelligence`（任意 - Analytics API を使う場合。Marketing Hub / CMS Hub が必要）
+5. **「アプリを作成」** → **「認証」タブ** → **「トークンを表示」** → コピー
 
 ### 2. Google Chat Webhook URL を取得
 
@@ -43,7 +43,7 @@ cp config.example.json config.json
   "hubspot_access_token": "取得したHubSpotトークン",
   "google_chat_webhook_url": "取得したGoogle Chat Webhook URL",
   "notification_threshold": 10,
-  "api_version": "analytics"
+  "api_version": "crm"
 }
 ```
 
@@ -52,7 +52,7 @@ cp config.example.json config.json
 | `hubspot_access_token` | HubSpot プライベートアプリのアクセストークン |
 | `google_chat_webhook_url` | Google Chat の Incoming Webhook URL |
 | `notification_threshold` | 通知を送る間隔（デフォルト: 10件ごと） |
-| `api_version` | `analytics`（Analytics API）または `crm`（CRM Search API） |
+| `api_version` | `crm`（CRM Search API、デフォルト）または `analytics`（Analytics API v2） |
 
 ### 4. 動作確認
 
@@ -92,8 +92,8 @@ Google Chat に以下のような通知が届きます:
 
 ## API バージョンについて
 
-- **`analytics`**（デフォルト）: HubSpot Analytics API v2 を使用。レポートと同じソース別データが取れる。
-- **`crm`**: HubSpot CRM Search API v3 を使用。Analytics API が使えない場合のフォールバック。コンタクトの `createdate` で当日分をカウント。
+- **`crm`**（デフォルト）: HubSpot CRM Search API v3 を使用。`crm.objects.contacts.read` スコープのみで動作。ソース内訳も `hs_analytics_source` プロパティから取得。
+- **`analytics`**: HubSpot Analytics API v2 を使用。`business-intelligence` スコープが必要（Marketing Hub / CMS Hub）。レポートと完全に同じデータが取れる。
 
 ## トラブルシューティング
 

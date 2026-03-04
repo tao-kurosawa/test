@@ -2,5 +2,5 @@
   "hubspot_access_token": "pat-na1-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
   "google_chat_webhook_url": "https://chat.googleapis.com/v1/spaces/XXXXX/messages?key=XXXXX&token=XXXXX",
   "notification_threshold": 10,
-  "api_version": "analytics"
+  "api_version": "crm"
 }
