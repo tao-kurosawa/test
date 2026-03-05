@@ -202,7 +202,7 @@ def get_today_contacts_count_v3(access_token):
 
 
 def send_google_chat_notification(webhook_url, total_contacts, source_breakdown, today):
-    """Google Chat に通知を送信する"""
+    """Google Chat に通知を送信する。成功時 True、失敗時 False を返す。"""
     # ソース内訳テキストを生成
     breakdown_lines = ""
     if source_breakdown:
@@ -229,12 +229,16 @@ def send_google_chat_notification(webhook_url, total_contacts, source_breakdown,
         with urllib.request.urlopen(req) as response:
             if response.status == 200:
                 print(f"通知送信成功: {total_contacts}件")
+                return True
             else:
                 print(f"通知送信失敗 (HTTP {response.status})")
+                return False
     except urllib.error.HTTPError as e:
         print(f"Google Chat Webhook エラー (HTTP {e.code})")
+        return False
     except urllib.error.URLError as e:
         print(f"Google Chat Webhook 接続エラー: {e.reason}")
+        return False
 
 
 def main():
@@ -264,8 +268,10 @@ def main():
 
     # 前回の通知閾値を超えたら通知
     if current_threshold > 0 and current_threshold > state["last_notified_threshold"]:
-        send_google_chat_notification(webhook_url, total_contacts, source_breakdown, today)
-        state["last_notified_threshold"] = current_threshold
+        if send_google_chat_notification(webhook_url, total_contacts, source_breakdown, today):
+            state["last_notified_threshold"] = current_threshold
+        else:
+            print("通知送信に失敗したため、次回再試行します。")
 
     save_state(state)
 
