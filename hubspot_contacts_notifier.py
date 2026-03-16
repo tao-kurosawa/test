@@ -15,11 +15,13 @@ import os
 import sys
 import urllib.request
 import urllib.error
+import msvcrt
 from datetime import datetime, timezone, timedelta
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(SCRIPT_DIR, "config.json")
 STATE_PATH = os.path.join(SCRIPT_DIR, ".notifier_state.json")
+LOCK_PATH = os.path.join(SCRIPT_DIR, ".notifier.lock")
 
 # HubSpot レポートで使用しているソースフィルタ
 SOURCES = [
@@ -242,6 +244,25 @@ def send_google_chat_notification(webhook_url, total_contacts, source_breakdown,
 
 
 def main():
+    # 多重実行防止: ロックファイルを取得できなければ終了
+    try:
+        lock_file = open(LOCK_PATH, "w")
+        msvcrt.locking(lock_file.fileno(), msvcrt.LK_NBLCK, 1)
+    except (OSError, IOError):
+        print("別のインスタンスが実行中のためスキップします。")
+        sys.exit(0)
+
+    try:
+        _run(lock_file)
+    finally:
+        try:
+            msvcrt.locking(lock_file.fileno(), msvcrt.LK_UNLCK, 1)
+        except OSError:
+            pass
+        lock_file.close()
+
+
+def _run(lock_file):
     config = load_config()
     access_token = config["hubspot_access_token"]
     webhook_url = config["google_chat_webhook_url"]
@@ -278,3 +299,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
